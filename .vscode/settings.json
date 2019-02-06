@@ -1,0 +1,5 @@
+{
+    "javascript.implicitProjectConfig.checkJs": true,
+    "javascript.preferences.quoteStyle": "double",
+    "editor.formatOnSave": true
+}

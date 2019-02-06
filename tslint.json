@@ -1,0 +1,8 @@
+{
+	"extends": [],
+	"defaultSeverity": "warning",
+	"linterOptions": {
+		"exclude": ["config/**/*.js", "node_modules/**/*.ts"]
+	},
+	"indent": [true, "tabs", 2]
+}
