@@ -1,0 +1,1 @@
+Preact template with typescript/webpack configuration
