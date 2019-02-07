@@ -19,7 +19,8 @@ module.exports = merge(common, {
 		rules: [
 			{
 				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-				loader: "url"
+				loader: "url",
+				include: path.resolve(__dirname, "src/assets")
 			}
 		]
 	}
