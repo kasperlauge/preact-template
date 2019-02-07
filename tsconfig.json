@@ -1,13 +1,15 @@
 {
 	"compilerOptions": {
+		"experimentalDecorators": true,
 		"outDir": "./dist/",
 		"sourceMap": true,
 		"noImplicitAny": true,
 		"module": "commonjs",
-		"target": "es5",
+		"target": "es6",
 		"jsx": "react",
 		"jsxFactory": "h",
 		"allowJs": true,
 		"types": ["node"]
-	}
+	},
+	"exclude": ["node_modules"]
 }

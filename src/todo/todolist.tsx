@@ -1,30 +1,27 @@
 import { h, Component } from "preact";
 import TodoElement from "./todo-element";
+import { connect } from "preact-redux";
+import { IAppState } from "../state/ducks";
+import { todoOperations } from "../state/ducks/todo";
+import { ITodosState } from "../state/ducks/todo/reducer";
 
-export default class TodoList extends Component {
-	state: any;
+interface TodoListProps {
+	todoState: ITodosState;
+	requestTodos: () => any;
+}
+
+class TodoList extends Component<TodoListProps, any> {
 	constructor() {
 		super();
-		// set initial time:
-		this.state.todos = [
-			{
-				name: "Read up on wireless",
-				done: false
-			},
-			{
-				name: "Buy christmas gifts",
-				done: false
-			},
-			{
-				name: "Eat",
-				done: true
-			}
-		];
+	}
+
+	componentDidMount() {
+		this.props.requestTodos();
 	}
 
 	render() {
 		const todos = [];
-		for (let todo of this.state.todos) {
+		for (let todo of this.props.todoState.todos) {
 			todos.push(<TodoElement name={todo.name} done={todo.done} />);
 		}
 		return (
@@ -35,3 +32,16 @@ export default class TodoList extends Component {
 		);
 	}
 }
+
+function mapStateToProps(state: IAppState) {
+	return { todoState: state.todos };
+}
+
+const mapDispatchToProps = {
+	requestTodos: todoOperations.requestTodos
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(TodoList);

@@ -26,13 +26,16 @@ module.exports = {
 			template: "./src/index.html",
 			filename: "./index.html"
 		}),
-		new webpack.HashedModuleIdsPlugin()
+		new webpack.HashedModuleIdsPlugin(),
+		new webpack.ProvidePlugin({
+			React: "react"
+		})
 	],
 	module: {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				use: "awesome-typescript-loader",
+				use: "ts-loader",
 				include: path.resolve(__dirname, "src"),
 				exclude: /node_modules/
 			},
@@ -53,6 +56,14 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: [".tsx", ".ts", ".js", "jsx"]
+		extensions: [".tsx", ".ts", ".js", "jsx"],
+		alias: {
+			react: "preact-compat",
+			"react-dom": "preact-compat",
+			// Not necessary unless you consume a module using `createClass`
+			"create-react-class": "preact-compat/lib/create-react-class",
+			// Not necessary unless you consume a module requiring `react-dom-factories`
+			"react-dom-factories": "preact-compat/lib/react-dom-factories"
+		}
 	}
 };
