@@ -16,7 +16,7 @@ const requestTodos = () => (dispatch: any) => {
 			done: true
 		}
 	];
-	dispatch(actions.requestTodosSuccess(todos));
+	return dispatch(actions.requestTodosSuccess(todos));
 };
 
 export default {
