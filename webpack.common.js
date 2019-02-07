@@ -1,12 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-const ENV = process.env.NODE_ENV || "development";
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
 	entry: "./src/main.tsx",
-	devtool: "source-map",
+	optimization: {
+		usedExports: true,
+		splitChunks: {
+			chunks: "all"
+		}
+	},
 	plugins: [
+		new CleanWebpackPlugin(["dist"]),
 		new HtmlWebpackPlugin({
 			title: "Todo",
 			favicon: path.resolve(__dirname, "src/assets/favicon.ico"),
@@ -14,7 +19,6 @@ module.exports = {
 			filename: "./index.html"
 		})
 	],
-	mode: "development",
 	module: {
 		rules: [
 			{
@@ -34,21 +38,10 @@ module.exports = {
 						}
 					}
 				]
-			},
-			{
-				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-				loader:
-					ENV === "production"
-						? "file?name=[path][name]_[hash:base64:5].[ext]"
-						: "url"
 			}
 		]
 	},
 	resolve: {
 		extensions: [".tsx", ".ts", ".js", "jsx"]
-	},
-	output: {
-		filename: "[name].bundle.js",
-		path: path.resolve(__dirname, "dist")
 	}
 };
