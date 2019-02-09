@@ -1,9 +1,10 @@
 import { h, Component } from "preact";
-import TodoElement from "./todo-element";
+import TodoElement from "../todo-element/todo-element.component";
 import { connect } from "preact-redux";
-import { IAppState } from "../state/ducks";
-import { todoOperations } from "../state/ducks/todo";
-import { ITodosState } from "../state/ducks/todo/reducer";
+import { IAppState } from "../../state/ducks";
+import { todoOperations } from "../../state/ducks/todo";
+import { ITodosState } from "../../state/ducks/todo/reducer";
+const style = require("./todolist.component.less");
 
 interface TodoListProps {
 	todoState: ITodosState;
@@ -25,7 +26,7 @@ class TodoList extends Component<TodoListProps, any> {
 			todos.push(<TodoElement name={todo.name} done={todo.done} />);
 		}
 		return (
-			<div>
+			<div className={style["klm-todolist"]}>
 				<h1>TodoList</h1>
 				{todos}
 			</div>

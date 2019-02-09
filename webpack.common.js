@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-var WebpackPwaManifest = require("webpack-pwa-manifest");
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 module.exports = {
 	entry: "./src/main.tsx",
@@ -53,31 +53,10 @@ module.exports = {
 				include: path.resolve(__dirname, "src"),
 				exclude: /node_modules/
 			},
-			{ enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-			{
-				test: /\.css$/,
-				use: [
-					{ loader: "style-loader" },
-					{
-						loader: "css-loader",
-						options: {
-							modules: true
-						}
-					}
-				],
-				include: path.resolve(__dirname, "src")
-			}
+			{ enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
 		]
 	},
 	resolve: {
-		extensions: [".tsx", ".ts", ".js", "jsx"],
-		alias: {
-			react: "preact-compat",
-			"react-dom": "preact-compat",
-			// Not necessary unless you consume a module using `createClass`
-			"create-react-class": "preact-compat/lib/create-react-class",
-			// Not necessary unless you consume a module requiring `react-dom-factories`
-			"react-dom-factories": "preact-compat/lib/react-dom-factories"
-		}
+		extensions: [".tsx", ".ts", ".js", ".jsx"]
 	}
 };

@@ -1,12 +1,11 @@
-import "./style.css";
+require("./style.css");
 import { h, Component } from "preact";
-import TodoList from "./todo/todolist";
+import TodoList from "./todo/todolist/todolist.component";
 
 export default class App extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Hello, World!</h1>
 				<TodoList />
 			</div>
 		);
